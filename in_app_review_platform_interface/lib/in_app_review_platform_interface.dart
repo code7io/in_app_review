@@ -59,12 +59,17 @@ abstract class InAppReviewPlatform extends PlatformInterface {
   /// [appStoreId] is required for IOS & MacOS.
   ///
   /// [microsoftStoreId] is required for Windows.
+  ///
+  /// [showReview] true to show review screen on iOS, false for normal listing. If not set falls back to true.
   Future<void> openStoreListing({
     /// Required for IOS & MacOS.
     String? appStoreId,
 
     /// Required for Windows.
     String? microsoftStoreId,
+
+    /// Should open AppStore with review window?
+    bool? showReview = true,
   }) {
     throw UnimplementedError('openStoreListing() has not been implemented.');
   }

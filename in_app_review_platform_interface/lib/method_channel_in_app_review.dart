@@ -21,9 +21,7 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   @override
   Future<bool> isAvailable() async {
     if (kIsWeb) return false;
-    return _channel
-        .invokeMethod<bool>('isAvailable')
-        .then((available) => available ?? false, onError: (_) => false);
+    return _channel.invokeMethod<bool>('isAvailable').then((available) => available ?? false, onError: (_) => false);
   }
 
   @override
@@ -33,6 +31,7 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   Future<void> openStoreListing({
     String? appStoreId,
     String? microsoftStoreId,
+    bool? showReview = true,
   }) async {
     final bool isIOS = _platform.isIOS;
     final bool isMacOS = _platform.isMacOS;
@@ -40,10 +39,17 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
     final bool isWindows = _platform.isWindows;
 
     if (isIOS || isMacOS) {
-      await _channel.invokeMethod(
-        'openStoreListing',
-        ArgumentError.checkNotNull(appStoreId, 'appStoreId'),
-      );
+      if (showReview! == true) {
+        await _channel.invokeMethod(
+          'openStoreListingReview',
+          ArgumentError.checkNotNull(appStoreId, 'appStoreId'),
+        );
+      } else {
+        await _channel.invokeMethod(
+          'openStoreListing',
+          ArgumentError.checkNotNull(appStoreId, 'appStoreId'),
+        );
+      }
     } else if (isAndroid) {
       await _channel.invokeMethod('openStoreListing');
     } else if (isWindows) {
@@ -59,8 +65,9 @@ class MethodChannelInAppReview extends InAppReviewPlatform {
   }
 
   Future<void> _launchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceSafariVC: false, forceWebView: false);
+    Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
 }

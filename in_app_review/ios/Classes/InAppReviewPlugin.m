@@ -21,6 +21,8 @@
         [self isAvailable:result];
     } else if ([call.method isEqual:@"openStoreListing"]) {
         [self openStoreListingWithStoreId:call.arguments result:result];
+    } else if ([call.method isEqual:@"openStoreListingReview"]) {
+        [self openStoreListingWithStoreId:call.arguments result:result];
     } else {
         [self logMessage:@"method not implemented"];
         result(FlutterMethodNotImplemented);
