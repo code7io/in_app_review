@@ -44,6 +44,8 @@ if (await inAppReview.isAvailable()) {
 
 The following code opens the Google Play Store on Android, the App Store with a review screen on IOS & MacOS and the Microsoft Store on Windows. Use this if you want to permanently provide a button or other call-to-action to let users leave a review as it isn't restricted by a quota.
 
+Added an optional parameter called showReview. If set to false it will open normal listing on iOS. If not set it will fallback to true and open App Store listing with review screen.
+
 ```dart
 import 'package:in_app_review/in_app_review.dart';
 

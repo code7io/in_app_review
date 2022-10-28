@@ -51,5 +51,6 @@ class InAppReview {
       InAppReviewPlatform.instance.openStoreListing(
         appStoreId: appStoreId,
         microsoftStoreId: microsoftStoreId,
+        showReview: showReview,
       );
 }
