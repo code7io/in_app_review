@@ -78,9 +78,7 @@ void main() {
   });
 }
 
-class MockInAppReviewPlatform extends Mock
-    with MockPlatformInterfaceMixin
-    implements InAppReviewPlatform {
+class MockInAppReviewPlatform extends Mock with MockPlatformInterfaceMixin implements InAppReviewPlatform {
   Future<bool> isAvailable() => super.noSuchMethod(
         Invocation.method(#isAvailable, null),
         returnValue: Future.value(true),
@@ -94,12 +92,13 @@ class MockInAppReviewPlatform extends Mock
   Future<void> openStoreListing({
     String? appStoreId,
     String? microsoftStoreId,
+    bool? showReview,
   }) =>
       super.noSuchMethod(
         Invocation.method(
           #openStoreListing,
           null,
-          {#appStoreId: appStoreId, #microsoftStoreId: microsoftStoreId},
+          {#appStoreId: appStoreId, #microsoftStoreId: microsoftStoreId, #showReview: showReview},
         ),
         returnValue: Future<void>.value(),
       );

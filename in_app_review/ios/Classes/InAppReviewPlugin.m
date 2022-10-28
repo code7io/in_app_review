@@ -22,7 +22,7 @@
     } else if ([call.method isEqual:@"openStoreListing"]) {
         [self openStoreListingWithStoreId:call.arguments result:result];
     } else if ([call.method isEqual:@"openStoreListingReview"]) {
-        [self openStoreListingWithStoreId:call.arguments result:result];
+        [self openStoreListingWithStoreIdReview:call.arguments result:result];
     } else {
         [self logMessage:@"method not implemented"];
         result(FlutterMethodNotImplemented);
@@ -69,6 +69,32 @@
 }
 
 - (void) openStoreListingWithStoreId:(NSString *)storeId result:(FlutterResult)result {
+    
+    if (!storeId) {
+        result([FlutterError errorWithCode:@"no-store-id"
+                                   message:@"Your store id must be passed as the method channel's argument"
+                                   details:nil]);
+        return;
+    }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://apps.apple.com/app/id%@", storeId]];
+    
+    if (!url) {
+        result([FlutterError errorWithCode:@"url-construct-fail"
+                                   message:@"Failed to construct url"
+                                   details:nil]);
+        return;
+    }
+        
+    UIApplication *app = [UIApplication sharedApplication];
+    if (@available(iOS 10.0, *)) {
+        [app openURL:url options:@{} completionHandler:nil];
+    } else {
+        [app openURL:url];
+    }
+}
+
+- (void) openStoreListingWithStoreIdReview:(NSString *)storeId result:(FlutterResult)result {
     
     if (!storeId) {
         result([FlutterError errorWithCode:@"no-store-id"

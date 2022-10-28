@@ -75,9 +75,11 @@ packages:
   in_app_review_platform_interface:
     dependency: transitive
     description:
-      name: in_app_review_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: in_app_review_platform_interface
+      ref: master
+      resolved-ref: d020a45b3b1d292ae225ee45f15d7f069212d1e4
+      url: "https://github.com/code7io/in_app_review.git"
+    source: git
     version: "2.0.4"
   js:
     dependency: transitive
