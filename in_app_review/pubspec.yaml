@@ -2,6 +2,7 @@ name: in_app_review
 description: Flutter plugin for showing the In-App Review/System Rating pop up on Android, IOS and MacOS. It makes it easy for users to rate your app.
 version: 2.0.5
 homepage: https://github.com/code7io/in_app_review/tree/master/in_app_review
+publish_to: none
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -11,7 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   
-  in_app_review_platform_interface: ^2.0.4
+  in_app_review_platform_interface: 
+    git:
+      url: git://github.com/code7io/in_app_review/tree/master/in_app_review_platform_interface.git
+      ref: master
   
 dev_dependencies:
   flutter_test:

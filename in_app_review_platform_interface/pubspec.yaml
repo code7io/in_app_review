@@ -4,6 +4,7 @@ description: A common platform interface for the in_app_review plugin.
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
 version: 2.0.4
 homepage: https://github.com/code7io/in_app_review/tree/master/in_app_review_platform_interface
+publish_to: none
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
